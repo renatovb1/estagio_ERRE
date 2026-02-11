@@ -17,12 +17,19 @@ O Projeto consiste na criação de uma aplicação web simples, onde é possíve
 
 ## Arquitetura
 
-O backend segue uma separação por responsabilidades:
+### Backend
 - **Routes** – Definição de endpoints
 - **Controllers** – Gestão de pedidos/respostas
 - **Services** – Lógica de negócio
 - **Database/Repository** – Queries SQL
 - **Middlewares** – Controlo de permissões (admin key)
+
+
+### Frontend
+- **Pages** – CV, Projetos, Login e Painel Admin
+- **Components** – Cards de projeto e formulário
+- **Utils** – Gestão de login e admin key
+- **API** – Configuração do Axios para comunicação com o backend
 
 ---
 
@@ -51,15 +58,28 @@ O backend segue uma separação por responsabilidades:
 
 ---
 
+### Dia 3 – 11/02/2026
+- Configuração do **Formspree** e envio de emails funcional.
+- Criação do **Frontend em React**.
+- Integração do **Axios**.
+- Implementação das páginas:
+  - CV
+  - Projetos públicos
+  - Login simples
+  - Painel Admin
+- Implementação do CRUD completo no frontend.
+- Testes de integração frontend ↔ backend.
+
+---
+
 ## Estado Atual do Projeto
 - Backend funcional.
 - Base de dados criada e ligada.
-- Endpoints testados.
+- CRUD completo funcional.
+- Frontend funcional. (incompleto)
+- Envio de emails ativo.
 
 ---
 
 ## Próximos Passos
-- Envio de email funcional para notificações de criação de projetos.
-- Desenvolvimento do Frontend em React.
-- Integração do Axios com a API.
-
+- Terminar design frontend
