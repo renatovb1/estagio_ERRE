@@ -1,0 +1,131 @@
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.app-ambient {
+  position: fixed;
+  pointer-events: none;
+  filter: blur(64px);
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.app-ambient-a {
+  width: 360px;
+  height: 360px;
+  background: #2dd4bf;
+  top: -110px;
+  left: -80px;
+}
+
+.app-ambient-b {
+  width: 420px;
+  height: 420px;
+  background: #22d3ee;
+  right: -160px;
+  top: 80px;
+}
+
+.app-main {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, calc(100% - 1.4rem));
+  margin: 1.1rem auto 2rem;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, rgba(20, 32, 56, 0.96) 0%, rgba(14, 24, 44, 0.96) 100%);
+  box-shadow: var(--shadow);
+}
+
+.section-head {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.section-kicker {
+  width: fit-content;
+  border: 1px solid #34517a;
+  border-radius: 999px;
+  color: #9fc8ff;
+  background: #172a49;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.24rem 0.52rem;
+}
+
+.section-subtitle {
+  color: var(--text-soft);
+}
+
+.btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 0.66rem 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 160ms ease, filter 160ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  color: #041019;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+}
+
+.btn-ghost {
+  color: #b8caed;
+  border: 1px solid #32507a;
+  background: #15233e;
+}
+
+.btn-danger {
+  color: #ffd8df;
+  border: 1px solid #8b3a4f;
+  background: #381825;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid #2e456c;
+  border-radius: var(--radius-md);
+  background: #0f1b33;
+  color: var(--text);
+  padding: 0.72rem 0.82rem;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #7992be;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #4ea6ff;
+  box-shadow: 0 0 0 4px rgba(78, 166, 255, 0.16);
+}
+
+.label {
+  display: grid;
+  gap: 0.34rem;
+  color: #b8caed;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .app-main {
+    width: min(1120px, calc(100% - 0.9rem));
+    margin-top: 0.8rem;
+  }
+}

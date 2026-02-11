@@ -35,6 +35,10 @@ async function listAdmin(req, res) {
 
 async function getOne(req, res) {
   const id = Number(req.params.id);
+  if (!Number.isInteger(id) || id <= 0) {
+    return res.status(400).json({ error: "ID inválido." });
+  }
+
   const project = await service.getProject(id);
   if (!project) return res.status(404).json({ error: "Projeto não encontrado." });
   res.json(project);
@@ -62,6 +66,10 @@ async function update(req, res) {
 
 async function remove(req, res) {
   const id = Number(req.params.id);
+  if (!Number.isInteger(id) || id <= 0) {
+    return res.status(400).json({ error: "ID inválido." });
+  }
+
   const deleted = await service.deleteProject(id);
   if (!deleted) return res.status(404).json({ error: "Projeto não encontrado." });
   res.json({ ok: true, deleted });

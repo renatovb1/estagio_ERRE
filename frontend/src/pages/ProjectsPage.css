@@ -1,0 +1,38 @@
+.projects-page {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.projects-topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.projects-actions {
+  display: flex;
+  gap: 0.52rem;
+  align-items: flex-start;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 0.75rem;
+}
+
+.projects-feedback {
+  border: 1px solid #32507a;
+  border-radius: var(--radius-md);
+  background: #12213b;
+  color: var(--text-soft);
+  padding: 0.75rem;
+}
+
+.projects-feedback-error {
+  border-color: #874057;
+  color: #ffb6c5;
+  background: #2b1620;
+}
