@@ -6,7 +6,7 @@ const LIMITS = {
   url: 300,
   repoUrl: 300,
   imageUrl: 300,
-  tags: 15,
+  tags: 100,
 };
 
 export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {

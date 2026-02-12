@@ -14,10 +14,8 @@
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-auto-flow: row;
-  align-items: stretch;
+  display: flex;
+  flex-direction: column;
   gap: 0.9rem;
 }
 
