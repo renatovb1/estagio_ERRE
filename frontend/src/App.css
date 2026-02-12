@@ -36,28 +36,14 @@
 }
 
 .panel {
-  border: 1px solid var(--line);
+  border: black 1px solid;
   border-radius: var(--radius-xl);
-  background: linear-gradient(180deg, rgba(20, 32, 56, 0.96) 0%, rgba(14, 24, 44, 0.96) 100%);
   box-shadow: var(--shadow);
 }
 
 .section-head {
   display: grid;
   gap: 0.35rem;
-}
-
-.section-kicker {
-  width: fit-content;
-  border: 1px solid #34517a;
-  border-radius: 999px;
-  color: #9fc8ff;
-  background: #172a49;
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.24rem 0.52rem;
 }
 
 .section-subtitle {
@@ -96,7 +82,6 @@
 
 .input,
 .textarea {
-  width: 100%;
   border: 1px solid #2e456c;
   border-radius: var(--radius-md);
   background: #0f1b33;

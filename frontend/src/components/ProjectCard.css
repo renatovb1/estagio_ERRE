@@ -1,16 +1,19 @@
 .project-card {
-  border: 1px solid #2f466f;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, #13213c 0%, #101a31 100%);
-  padding: 0.85rem;
-  display: grid;
-  gap: 0.62rem;
-  transition: transform 160ms ease, border-color 160ms ease;
+  border: 1px solid #dcdcdc;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #1f1f1f;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.72rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
 .project-card:hover {
-  transform: translateY(-2px);
-  border-color: #4e7bbe;
+  border-color: #a7a7a7;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
 }
 
 .project-card-top {
@@ -21,13 +24,20 @@
 }
 
 .project-card-top h3 {
-  font-size: 1.02rem;
+  font-size: 1.08rem;
+  line-height: 1.2;
+  margin: 0;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-state {
-  border: 1px solid #2f8f84;
-  background: #103439;
-  color: #88f4e2;
+  border: 1px solid #b9d3b9;
+  background: #eef7ee;
+  color: #2d5f2d;
   border-radius: 999px;
   padding: 0.18rem 0.48rem;
   font-size: 0.72rem;
@@ -35,20 +45,29 @@
 }
 
 .project-description {
-  color: var(--text-soft);
+  color: #4b4b4b;
+  line-height: 1.45;
+  margin: 0;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.36rem;
+  margin-top: 0.38rem;
+  margin-bottom: 0;
 }
 
 .project-tag {
-  border: 1px solid #36507b;
+  border: 1px solid #d5d5d5;
   border-radius: 999px;
-  background: #172744;
-  color: #a9bee6;
+  background: #f3f3f3;
+  color: #4a4a4a;
   padding: 0.18rem 0.46rem;
   font-size: 0.75rem;
 }
@@ -57,14 +76,21 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
+  margin-top: 0;
 }
 
 .project-links a {
-  border: 1px solid #3f5f8f;
-  background: #182b4b;
-  color: #cfe3ff;
+  border: 1px solid #cfcfcf;
+  background: #f6f6f6;
+  color: #2f2f2f;
   border-radius: 10px;
-  padding: 0.3rem 0.5rem;
+  padding: 0.38rem 0.58rem;
   font-size: 0.82rem;
   font-weight: 700;
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+
+.project-links a:hover {
+  border-color: #b8b8b8;
+  background: #ededed;
 }

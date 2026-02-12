@@ -1,30 +1,45 @@
 import "./CvPage.css";
-import { Link } from "react-router-dom";
-
-const CV_IMAGE_URL = "";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { setGuestLogged } from "../utils/auth.js";
+import cvImage from "../assets/Renato Barbosa.png";
 
 export default function CvPage() {
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+
+  function handleLogin(e) {
+    e.preventDefault();
+    setGuestLogged(true);
+    navigate("/projects");
+  }
+
   return (
-    <section className="cv-page panel">
-      <div className="section-head">
-        <span className="section-kicker">CV</span>
-        <h1>Imagem do Currículo</h1>
-      </div>
+    <section className="cv-page">
+      <div className="cv-layout">
+          <article className="cv-viewer">
+            <img src={cvImage} alt="CV de Renato Barbosa" className="cv-image" />
+          </article>
+          <aside className="cv-login">
+            <div className="section-head">
+              <h1>Login</h1>
+              <p className="section-subtitle">Entra para veres os projetos.</p>
+            </div>
 
-      <div className="cv-slot">
-        {CV_IMAGE_URL ? (
-          <img src={CV_IMAGE_URL} alt="CV" className="cv-image" />
-        ) : (
-          <div className="cv-empty">
-            <p>Coloca a URL da imagem em `CV_IMAGE_URL`.</p>
-          </div>
-        )}
-      </div>
-
-      <div className="cv-actions">
-        <Link to="/login" className="btn btn-primary">
-          Login
-        </Link>
+            <form onSubmit={handleLogin} className="cv-login-form">
+                <input
+                  className="input"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="guest@email.com"
+                  required
+                />
+              <button type="submit" className="btn btn-primary">
+                Entrar
+              </button>
+            </form>
+          </aside>
       </div>
     </section>
   );

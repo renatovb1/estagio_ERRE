@@ -98,90 +98,90 @@ export default function AdminPage() {
   }, []);
 
   return (
-    <section className="admin-page panel">
-      <div className="admin-head">
-        <div className="section-head">
-          <span className="section-kicker">Backoffice</span>
-          <h1>Painel Admin</h1>
-          <p className="section-subtitle">Cria, edita e remove projetos.</p>
+    <section className="admin-page">
+      <div className="admin-shell">
+        <div className="admin-head">
+          <div className="section-head">
+            <h1>Painel Admin</h1>
+          </div>
+
+          <Link className="btn btn-ghost" to="/projects">
+            Ver projetos
+          </Link>
         </div>
 
-        <Link className="btn btn-ghost" to="/projects">
-          Ver projetos
-        </Link>
-      </div>
+        <form onSubmit={handleSaveKey} className="admin-key-bar">
+          <label className="label admin-key-input-wrap">
+            Admin key
+            <input
+              className="input"
+              value={key}
+              onChange={(e) => setKey(e.target.value)}
+              placeholder="ADMIN_KEY"
+            />
+          </label>
 
-      <form onSubmit={handleSaveKey} className="admin-key-bar">
-        <label className="label admin-key-input-wrap">
-          Admin key
-          <input
-            className="input"
-            value={key}
-            onChange={(e) => setKey(e.target.value)}
-            placeholder="ADMIN_KEY"
-          />
-        </label>
+          <button type="submit" className="btn btn-primary">
+            Guardar
+          </button>
+          <button type="button" className="btn btn-ghost" onClick={() => loadProjects(key)}>
+            Recarregar
+          </button>
+        </form>
 
-        <button type="submit" className="btn btn-primary">
-          Guardar
-        </button>
-        <button type="button" className="btn btn-ghost" onClick={() => loadProjects(key)}>
-          Recarregar
-        </button>
-      </form>
+        {message && <p className="admin-message">{message}</p>}
 
-      {message && <p className="admin-message">{message}</p>}
+        <div className="admin-layout">
+          <article className="admin-block">
+            <h2>{editingProject ? `Editar #${editingProject.id}` : "Novo projeto"}</h2>
+            <ProjectForm
+              initialValue={editingProject}
+              onSubmit={editingProject ? handleUpdate : handleCreate}
+              submitLabel={editingProject ? "Guardar alterações" : "Criar projeto"}
+            />
+            {editingProject && (
+              <button className="btn btn-ghost" onClick={() => setEditingProject(null)}>
+                Cancelar edição
+              </button>
+            )}
+          </article>
 
-      <div className="admin-layout">
-        <article className="admin-block">
-          <h2>{editingProject ? `Editar #${editingProject.id}` : "Novo projeto"}</h2>
-          <ProjectForm
-            initialValue={editingProject}
-            onSubmit={editingProject ? handleUpdate : handleCreate}
-            submitLabel={editingProject ? "Guardar alterações" : "Criar projeto"}
-          />
-          {editingProject && (
-            <button className="btn btn-ghost" onClick={() => setEditingProject(null)}>
-              Cancelar edição
-            </button>
-          )}
-        </article>
+          <article className="admin-block">
+            <h2>Projetos</h2>
 
-        <article className="admin-block">
-          <h2>Projetos</h2>
+            {loading ? (
+              <p className="admin-muted">A carregar...</p>
+            ) : projects.length === 0 ? (
+              <p className="admin-muted">Sem projetos para mostrar.</p>
+            ) : (
+              <div className="admin-list">
+                {projects.map((p) => (
+                  <article key={p.id} className="admin-item">
+                    <div className="admin-item-head">
+                      <strong>
+                        #{p.id} {p.title}
+                      </strong>
+                      <span>{p.is_published ? "Publicado" : "Rascunho"}</span>
+                    </div>
 
-          {loading ? (
-            <p className="admin-muted">A carregar...</p>
-          ) : projects.length === 0 ? (
-            <p className="admin-muted">Sem projetos para mostrar.</p>
-          ) : (
-            <div className="admin-list">
-              {projects.map((p) => (
-                <article key={p.id} className="admin-item">
-                  <div className="admin-item-head">
-                    <strong>
-                      #{p.id} {p.title}
-                    </strong>
-                    <span>{p.is_published ? "Publicado" : "Rascunho"}</span>
-                  </div>
+                    <p>{p.description}</p>
 
-                  <p>{p.description}</p>
+                    {p.tags?.length > 0 && <small>Tags: {p.tags.join(", ")}</small>}
 
-                  {p.tags?.length > 0 && <small>Tags: {p.tags.join(", ")}</small>}
-
-                  <div className="admin-item-actions">
-                    <button className="btn btn-ghost" onClick={() => setEditingProject(p)}>
-                      Editar
-                    </button>
-                    <button className="btn btn-danger" onClick={() => handleDelete(p.id)}>
-                      Apagar
-                    </button>
-                  </div>
-                </article>
-              ))}
-            </div>
-          )}
-        </article>
+                    <div className="admin-item-actions">
+                      <button className="btn btn-ghost" onClick={() => setEditingProject(p)}>
+                        Editar
+                      </button>
+                      <button className="btn btn-danger" onClick={() => handleDelete(p.id)}>
+                        Apagar
+                      </button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </article>
+        </div>
       </div>
     </section>
   );

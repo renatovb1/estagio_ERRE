@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
 
+const LIMITS = {
+  title: 55,
+  description: 400,
+  url: 300,
+  repoUrl: 300,
+  imageUrl: 300,
+  tags: 15,
+};
+
 export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -39,11 +48,11 @@ export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {
       .filter(Boolean);
 
     onSubmit({
-      title,
-      description,
-      url,
-      repo_url: repoUrl,
-      image_url: imageUrl,
+      title: title.slice(0, LIMITS.title),
+      description: description.slice(0, LIMITS.description),
+      url: url.slice(0, LIMITS.url),
+      repo_url: repoUrl.slice(0, LIMITS.repoUrl),
+      image_url: imageUrl.slice(0, LIMITS.imageUrl),
       tags,
       is_published: isPublished,
       created_by: null,
@@ -51,10 +60,17 @@ export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="admin-form-grid">
+    <form onSubmit={handleSubmit} className="admin-form-grid project-form">
       <label className="label">
         Título
-        <input className="input" value={title} onChange={(e) => setTitle(e.target.value)} required />
+        <input
+          className="input"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          maxLength={LIMITS.title}
+          placeholder="Nome do projeto"
+          required
+        />
       </label>
 
       <label className="label">
@@ -64,6 +80,8 @@ export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={4}
+          maxLength={LIMITS.description}
+          placeholder="Resumo curto do projeto"
           required
         />
       </label>
@@ -75,6 +93,7 @@ export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {
           type="url"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
+          maxLength={LIMITS.url}
           placeholder="https://..."
         />
       </label>
@@ -86,6 +105,7 @@ export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {
           type="url"
           value={repoUrl}
           onChange={(e) => setRepoUrl(e.target.value)}
+          maxLength={LIMITS.repoUrl}
           placeholder="https://github.com/..."
         />
       </label>
@@ -97,6 +117,7 @@ export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {
           type="url"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
+          maxLength={LIMITS.imageUrl}
           placeholder="https://..."
         />
       </label>
@@ -107,6 +128,7 @@ export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {
           className="input"
           value={tagsText}
           onChange={(e) => setTagsText(e.target.value)}
+          maxLength={LIMITS.tags}
           placeholder="React, Node, PostgreSQL"
         />
       </label>
@@ -116,9 +138,11 @@ export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {
         Publicado
       </label>
 
-      <button className="btn btn-primary" type="submit">
-        {submitLabel}
-      </button>
+      <div className="project-form-actions">
+        <button className="btn btn-primary" type="submit">
+          {submitLabel}
+        </button>
+      </div>
     </form>
   );
 }
