@@ -72,14 +72,20 @@ O Projeto consiste na criação de uma aplicação web simples, onde é possíve
 
 ---
 
+### Dia 4 – 12/02/2026
+- Desenvolvimento do **Frontend** completo.
+
+---
+
 ## Estado Atual do Projeto
 - Backend funcional.
 - Base de dados criada e ligada.
 - CRUD completo funcional.
-- Frontend funcional. (incompleto)
+- Frontend funcional.
 - Envio de emails ativo.
 
 ---
 
 ## Próximos Passos
-- Terminar design frontend
+- Melhorar design frontend
+- Implentar autenticação com tokens
