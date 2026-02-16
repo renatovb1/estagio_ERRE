@@ -13,7 +13,6 @@ const projectSchema = z.object({
 });
 
 function normalizeProjectInput(body) {
-  // converter strings vazias em undefined para ficar limpo
   const clean = { ...body };
   for (const k of ["url", "repo_url", "image_url"]) {
     if (clean[k] === "") clean[k] = undefined;
@@ -24,55 +23,91 @@ function normalizeProjectInput(body) {
 }
 
 async function listPublic(req, res) {
-  const projects = await service.listProjectsPublic();
-  res.json(projects);
+  try {
+    const projects = await service.listProjectsPublic();
+    return res.json(projects);
+  } catch (err) {
+    const status = err.status || 500;
+    return res.status(status).json({ error: err.message || "Erro interno." });
+  }
 }
 
 async function listAdmin(req, res) {
-  const projects = await service.listProjectsAdmin();
-  res.json(projects);
+  try {
+    const projects = await service.listProjectsAdmin();
+    return res.json(projects);
+  } catch (err) {
+    const status = err.status || 500;
+    return res.status(status).json({ error: err.message || "Erro interno." });
+  }
 }
 
 async function getOne(req, res) {
-  const id = Number(req.params.id);
-  if (!Number.isInteger(id) || id <= 0) {
-    return res.status(400).json({ error: "ID inválido." });
-  }
+  try {
+    const id = Number(req.params.id);
+    const project = await service.getProject(id);
 
-  const project = await service.getProject(id);
-  if (!project) return res.status(404).json({ error: "Projeto não encontrado." });
-  res.json(project);
+    if (!project) {
+      return res.status(404).json({ error: "Projeto não encontrado." });
+    }
+
+    return res.json(project);
+  } catch (err) {
+    const status = err.status || 500;
+    return res.status(status).json({ error: err.message || "Erro interno." });
+  }
 }
 
 async function create(req, res) {
-  const parsed = projectSchema.safeParse(normalizeProjectInput(req.body));
-  if (!parsed.success) {
-    return res.status(400).json({ error: "Dados inválidos.", details: parsed.error.flatten() });
+  try {
+    const parsed = projectSchema.safeParse(normalizeProjectInput(req.body));
+    if (!parsed.success) {
+      return res.status(400).json({ error: "Dados inválidos." });
+    }
+
+    const created = await service.createProject(parsed.data);
+    return res.status(201).json(created);
+  } catch (err) {
+    const status = err.status || 500;
+    return res.status(status).json({ error: err.message || "Erro interno." });
   }
-  const created = await service.createProject(parsed.data);
-  res.status(201).json(created);
 }
 
 async function update(req, res) {
-  const id = Number(req.params.id);
-  const parsed = projectSchema.safeParse(normalizeProjectInput(req.body));
-  if (!parsed.success) {
-    return res.status(400).json({ error: "Dados inválidos.", details: parsed.error.flatten() });
+  try {
+    const id = Number(req.params.id);
+
+    const parsed = projectSchema.safeParse(normalizeProjectInput(req.body));
+    if (!parsed.success) {
+      return res.status(400).json({ error: "Dados inválidos." });
+    }
+
+    const updated = await service.updateProject(id, parsed.data);
+    if (!updated) {
+      return res.status(404).json({ error: "Projeto não encontrado." });
+    }
+
+    return res.json(updated);
+  } catch (err) {
+    const status = err.status || 500;
+    return res.status(status).json({ error: err.message || "Erro interno." });
   }
-  const updated = await service.updateProject(id, parsed.data);
-  if (!updated) return res.status(404).json({ error: "Projeto não encontrado." });
-  res.json(updated);
 }
 
 async function remove(req, res) {
-  const id = Number(req.params.id);
-  if (!Number.isInteger(id) || id <= 0) {
-    return res.status(400).json({ error: "ID inválido." });
-  }
+  try {
+    const id = Number(req.params.id);
 
-  const deleted = await service.deleteProject(id);
-  if (!deleted) return res.status(404).json({ error: "Projeto não encontrado." });
-  res.json({ ok: true, deleted });
+    const deleted = await service.deleteProject(id);
+    if (!deleted) {
+      return res.status(404).json({ error: "Projeto não encontrado." });
+    }
+
+    return res.json({ ok: true, deleted });
+  } catch (err) {
+    const status = err.status || 500;
+    return res.status(status).json({ error: err.message || "Erro interno." });
+  }
 }
 
 module.exports = { listPublic, listAdmin, getOne, create, update, remove };

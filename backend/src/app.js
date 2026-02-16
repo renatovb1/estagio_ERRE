@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const { projectsRouter } = require("./routes/projects.routes");
+const { authRouter } = require("./routes/auth.routes");
 
 const app = express();
 
@@ -17,5 +18,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/projects", projectsRouter);
+
+app.use("/auth", authRouter);
 
 module.exports = { app };

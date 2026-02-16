@@ -77,8 +77,13 @@ O Projeto consiste na criação de uma aplicação web simples, onde é possíve
 
 ---
 
+### Dia 5 – 16/02/2026
+- Implementação de autenticação com **tokens** no backend.
+
+---
+
 ## Estado Atual do Projeto
-- Backend funcional.
+- Backend funcional com JWT.
 - Base de dados criada e ligada.
 - CRUD completo funcional.
 - Frontend funcional.
@@ -88,4 +93,3 @@ O Projeto consiste na criação de uma aplicação web simples, onde é possíve
 
 ## Próximos Passos
 - Melhorar design frontend
-- Implentar autenticação com tokens
