@@ -1,0 +1,41 @@
+.cv-preview-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #eceef2;
+  padding: 2rem 0;
+}
+
+.cv-preview-inner {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+}
+
+.cv-preview-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cv-preview-head h1 {
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  color: #111827;
+}
+
+.cv-preview-back {
+  background: #f59e0b;
+  color: #111827;
+  border-radius: 12px;
+  padding: 0.55rem 1rem;
+  font-weight: 700;
+}
+
+.cv-preview-image {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid #cfd3da;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  background: #ffffff;
+}

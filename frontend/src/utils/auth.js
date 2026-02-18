@@ -1,27 +1,17 @@
-const ADMIN_KEY_STORAGE = "adminKey";
-const GUEST_STORAGE = "guestLogged";
+const TOKEN_KEY = "token";
 
-export function setAdminKey(key) {
-  localStorage.setItem(ADMIN_KEY_STORAGE, key);
+export function saveToken(token) {
+  localStorage.setItem(TOKEN_KEY, token);
 }
 
-export function getAdminKey() {
-  return localStorage.getItem(ADMIN_KEY_STORAGE) || "";
+export function getToken() {
+  return localStorage.getItem(TOKEN_KEY);
 }
 
-export function clearAdminKey() {
-  localStorage.removeItem(ADMIN_KEY_STORAGE);
+export function clearToken() {
+  localStorage.removeItem(TOKEN_KEY);
 }
 
-export function setGuestLogged(value) {
-  localStorage.setItem(GUEST_STORAGE, value ? "true" : "false");
-}
-
-export function isGuestLogged() {
-  return localStorage.getItem(GUEST_STORAGE) === "true";
-}
-
-export function logout() {
-  clearAdminKey();
-  setGuestLogged(false);
+export function isAuthenticated() {
+  return Boolean(getToken());
 }

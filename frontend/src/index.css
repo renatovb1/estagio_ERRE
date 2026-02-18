@@ -30,6 +30,7 @@ body,
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   font-family: "General Sans", "Segoe UI", sans-serif;
   color: var(--text);
   background: radial-gradient(1200px 620px at 8% -10%, #1f2f52 0%, transparent 52%),

@@ -15,7 +15,7 @@ router.put("/:id", authGuard, requireRole("admin"), controller.update);
 router.delete("/:id", authGuard, requireRole("admin"), controller.remove);
 
 
-// Público (deixar por último para não capturar /admin/all como ":id")
+// Público 
 router.get("/:id", controller.getOne);
 
 module.exports = { projectsRouter: router };

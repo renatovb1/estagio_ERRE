@@ -5,7 +5,7 @@ async function notifyNewProject(project) {
 
   const payload = {
     subject: "Novo projeto criado",
-    message: `Projeto: ${project.title}\nID: ${project.id}\nURL: ${project.url ?? "(sem url)"}`,
+    message: `Projeto: ${project.title}\nID: ${project.id}\nURL: ${project.url ?? "Sem url"}`,
   };
 
   await axios.post(process.env.FORMSPREE_URL, payload, {
