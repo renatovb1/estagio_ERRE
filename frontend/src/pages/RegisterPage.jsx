@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { http } from "../api/http.js";
-import { saveToken } from "../utils/auth.js";
+import { saveRole, saveToken } from "../utils/auth.js";
 import { useNavigate } from "react-router-dom";
 import AuthCard from "../components/auth/AuthCard.jsx";
 import AuthField from "../components/auth/AuthField.jsx";
@@ -23,6 +23,7 @@ export default function RegisterPage() {
 
       // Guardar token para ficar autenticado logo após registo
       saveToken(res.data.token);
+      saveRole(res.data?.user?.role);
 
       setMsg("Conta criada com sucesso!");
       navigate("/projects");

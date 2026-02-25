@@ -9,7 +9,7 @@ const LIMITS = {
   tags: 100,
 };
 
-export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {
+export default function ProjectForm({ initialValue, onSubmit, submitLabel, onCancel }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [url, setUrl] = useState("");
@@ -139,6 +139,11 @@ export default function ProjectForm({ initialValue, onSubmit, submitLabel }) {
       </label>
 
       <div className="project-form-actions">
+        {onCancel && (
+          <button className="btn btn-ghost" type="button" onClick={onCancel}>
+            Cancelar
+          </button>
+        )}
         <button className="btn btn-primary" type="submit">
           {submitLabel}
         </button>

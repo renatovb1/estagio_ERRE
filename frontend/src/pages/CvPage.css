@@ -10,35 +10,9 @@
   margin: 0 auto;
 }
 
-.landing-topbar {
-  border-bottom: 1px solid #d8dbe1;
-}
-
-.landing-topbar .landing-inner {
-  height: 74px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.landing-brand {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #f59e0b;
-  letter-spacing: -0.02em;
-}
-
-.landing-login-top {
-  background: #f59e0b;
-  color: #0f172a;
-  border-radius: 16px;
-  padding: 0.62rem 1.26rem;
-  font-weight: 800;
-}
-
 .landing-hero {
   border-bottom: 1px solid #d8dbe1;
-  padding: clamp(5rem, 12vh, 8rem) 0 clamp(6rem, 14vh, 9rem);
+  padding: clamp(1rem, 16vh, 8rem) 0px clamp(6rem, 25vh, 9rem);
 }
 
 .landing-hero-inner {
@@ -75,7 +49,9 @@
 }
 
 .landing-title span {
-  color: #f59e0b;
+  background: linear-gradient(135deg, #f8b54a 0%, #f59e0b 52%, #de7b00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .landing-subtitle {
@@ -90,18 +66,23 @@
   margin-top: 2.6rem;
   display: grid;
   justify-items: center;
-  gap: 0.8rem;
+  gap: 1.8rem;
 }
 
 .landing-cta {
   display: inline-block;
-  background: #f59e0b;
+  background: linear-gradient(135deg, #f8b54a 0%, #f59e0b 52%, #de7b00 100%);
   color: #0f172a;
   border-radius: 16px;
   padding: 0.86rem 2.2rem;
   font-size: 1.4rem;
   font-weight: 800;
   text-decoration: none;
+  transition: filter 180ms ease;
+}
+
+.landing-cta:hover {
+  filter: brightness(1.02);
 }
 
 .landing-cv-link {
@@ -113,6 +94,7 @@
 .landing-about {
   border-bottom: 1px solid #d8dbe1;
   padding: 4.4rem 0 5.2rem;
+  background-color: #f1f3f6;
 }
 
 .landing-about h2 {
@@ -136,7 +118,7 @@
 }
 
 .landing-skill-card {
-  background: #eceef2;
+  background: #ffffff;
   border: 1px solid #cfd3da;
   border-radius: 20px;
   padding: 1.55rem;

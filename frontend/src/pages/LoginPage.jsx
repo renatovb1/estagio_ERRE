@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { http } from "../api/http.js";
-import { saveToken } from "../utils/auth.js";
+import { saveRole, saveToken } from "../utils/auth.js";
 import { useNavigate } from "react-router-dom";
 import AuthCard from "../components/auth/AuthCard.jsx";
 import AuthField from "../components/auth/AuthField.jsx";
@@ -18,12 +18,10 @@ export default function LoginPage() {
     setMsg("");
 
     try {
-      /**
-       * Login: envia credenciais e recebe token.
-       */
       const res = await http.post("/auth/login", { email, password });
 
       saveToken(res.data.token);
+      saveRole(res.data?.user?.role);
       navigate("/projects");
     } catch (err) {
       setMsg("Login falhou. Verifica email e password.");

@@ -23,19 +23,10 @@ export default function CvPage() {
 
   return (
     <section className="landing-page">
-      <header className="landing-topbar">
-        <div className="landing-inner">
-          <strong className="landing-brand">Portfolio</strong>
-          <Link to="/login" className="landing-login-top">
-            Entrar
-          </Link>
-        </div>
-      </header>
-
       <section className="landing-hero">
         <div className="landing-inner landing-hero-inner">
           <h1 className="landing-title">
-            Ola, eu sou <span>Renato</span>
+            Olá, eu sou <span>Renato</span>
           </h1>
 
           <p className="landing-subtitle">
@@ -44,7 +35,7 @@ export default function CvPage() {
 
           <div className="landing-cta-row">
             <Link to="/login" className="landing-cta">
-              Entrar
+              Entrar →
             </Link>
             <Link to="/cv" className="landing-cv-link">
               Vê o meu CV

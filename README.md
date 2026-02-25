@@ -88,14 +88,30 @@ O Projeto consiste na criação de uma aplicação web simples, onde é possíve
 
 ---
 
+### Dia 7 – 19/02/2026
+- Continuação do desenvolivimento e organização do frontend.
+- Ajustes de navegação entre páginas públicas e área autenticada.
+- Melhorias visuais na página de projetos e revisão de estilos.
+
+---
+
+### Dia 8 – 23/02/2026
+- Reorganização dos componentes do frontend por domínio.
+- Implementação de **controlo por role no frontend**:
+  - Proteção de rotas com `ProtectedRoute` (autenticado e admin).
+
+---
+
+### Dia 9 – 24/02/2026
+- Finalização do desenvolvimento do projeto.
+- Revisão geral do código.
+- Testes finais de todas as funcionalidades.
+---
+
+
 ## Estado Atual do Projeto
 - Backend funcional com JWT.
 - Base de dados criada e ligada.
 - CRUD completo funcional.
 - Frontend funcional.
 - Envio de emails ativo.
-
----
-
-## Próximos Passos
-- Finalizar design frontend

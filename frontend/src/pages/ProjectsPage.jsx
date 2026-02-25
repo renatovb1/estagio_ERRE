@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { http } from "../api/http.js";
-import ProjectCard from "../components/ProjectCard.jsx";
+import ProjectCard from "../components/projects/ProjectCard.jsx";
+import ProjectDetailsModal from "../components/projects/ProjectDetailsModal.jsx";
 import "./ProjectsPage.css";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     async function load() {
@@ -24,17 +25,22 @@ export default function ProjectsPage() {
     load();
   }, []);
 
+  function openProjectModal(project) {
+    setSelectedProject(project);
+  }
+
+  function closeProjectModal() {
+    setSelectedProject(null);
+  }
+
   return (
     <section className="projects-page">
       <div className="projects-layout">
         <header className="projects-head">
           <div>
             <h1>Projetos</h1>
-            <p className="projects-subtitle">Lista de projetos publicados.</p>
+            <p className="projects-subtitle">Uma coleção dos meus trabalhos recentes.</p>
           </div>
-          <Link to="/" className="projects-back">
-            Voltar
-          </Link>
         </header>
 
         <div className="projects-content">
@@ -47,12 +53,14 @@ export default function ProjectsPage() {
           ) : (
             <div className="projects-grid">
               {projects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+                <ProjectCard key={project.id} project={project} onOpen={() => openProjectModal(project)} />
               ))}
             </div>
           )}
         </div>
       </div>
+
+      {selectedProject && <ProjectDetailsModal project={selectedProject} onClose={closeProjectModal} />}
     </section>
   );
 }
